@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DO more Learn more</title>
+</head>
+<body>
+<img src="./01.jpg" alt="" id="aa">
+
+<script src="js/index.js" type="text/javascript"></script>
+<script>
+(function(){
+    var myMov = function(){
+        var img;
+        var flag=true;
+        var top;
+        var left;
+        var wid;
+
+        var dong = function () {
+            img.style.width=wid+"px";
+            img.style.top=top/2-wid/2+"px";
+            img.style.left = left/2-wid*(left/top)/2+"px";
+            if(flag){
+                wid++;
+                setTimeout(dong,5);
+                if(wid==1.5*left){
+                    flag=!flag;
+                }
+            }else{
+                wid--;
+                setTimeout(dong,5);
+                if(wid==0.5*left){
+                    flag=!flag;
+                }
+            }
+        }
+        return{
+            init:function(){
+                img = document.getElementById("aa");
+                top=img.attributes.id.ownerElement.clientHeight;
+                left=img.attributes.id.ownerElement.clientWidth;
+                img.style.position="absolute";
+                img.style.top=0;
+                img.style.left=0;
+                wid=top;
+                dong();
+            }
+        }
+    }();
+    myMov.init();
+})();
+</script>
+</body>
+</html>
